@@ -12,6 +12,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const user = session?.user;
+  console.log(user);
 
   const handleSignOut = async () => {
     await signOut();
@@ -48,11 +49,19 @@ const Header = () => {
                 className="flex items-center gap-2 rounded-lg p-2 hover:bg-gray-50 transition"
               >
                 <div className="w-9 h-9 rounded-full bg-emerald-100 flex items-center justify-center">
-                  <User className="w-5 h-5 text-emerald-700" />
+                  {user?.image ? (
+                    <img
+                      src={user?.image}
+                      alt={user?.name}
+                      className="rounded-full"
+                    />
+                  ) : (
+                    <User className="w-5 h-5 text-emerald-700" />
+                  )}
                 </div>
 
                 <span className="hidden sm:block text-sm font-medium text-gray-800 max-w-32 truncate">
-                  {user.name}
+                  {user?.name || user?.email || "My Name"}
                 </span>
 
                 <ChevronDown
