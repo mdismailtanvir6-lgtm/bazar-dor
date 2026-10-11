@@ -1,203 +1,193 @@
-# bazar-dor
-# 💪 B14-A7-Bazar Dor
+# বাজার দর (Bazar Dor)
 
----
+A modern Bangla marketplace price tracker for everyday essentials. The app helps users explore current commodity prices, compare price trends by category, review product details, and manage a personalized user profile with email and social authentication.
 
-## 📅 Deadline For 60 marks: 10 October | ⏱️11:59PM
-## 📅 Deadline For 50 marks: 11 October | ⏱️11:59PM
-## 📅 Deadline for 30 marks: Any time after 11 October 2026
+Built with Next.js and Tailwind CSS, this project brings a clean, responsive storefront experience to market-price discovery in Bangladesh.
 
----
-# API's
+## Product overview
 
-## BASE_URL_1: https://api.api-store.workers.dev/api/bazardor
-## BASE_URL_2: https://api.abcz.workers.dev/api/bazardor (alternative)
+বাজার দর gives users a quick and easy way to:
 
-Endpoints:  
-**All Products:**
+- Browse essential product categories like rice, oil, vegetables, fish, meat, eggs, and spices
+- View price cards with current rates and trend indicators
+- Explore product details with market-wise pricing summaries
+- Filter and sort products within categories
+- Sign up or sign in using email/password and Google/GitHub social login
+- Manage a personal profile after authentication
+
+This project is designed for a consumer-facing market intelligence experience, focused on everyday shopping decisions and price transparency.
+
+## Key features
+
+- Responsive marketplace homepage with hero banner and price highlights
+- Dynamic product categories and category landing pages
+- Product listing views with sort options and pricing summary
+- Detailed product pages showing market price comparisons
+- User authentication with Better Auth
+- MongoDB integration for persistent auth/session data
+- Social login support for Google and GitHub
+- Interactive profile page and user settings
+- Clean Bengali-first UI with modern e-commerce styling
+
+## Tech stack
+
+- Next.js 16
+- React 19
+- Tailwind CSS
+- Better Auth
+- MongoDB / MongoDB adapter
+- Lucide React icons
+- react-fast-marquee
+- react-hot-toast
+
+## Project structure
+
+```bash
+bazar-dor/
+├── public/
+│   ├── bazar-hero.png
+│   └── logo-icon.png
+├── src/
+│   ├── app/
+│   │   ├── api/auth/[...all]/route.js
+│   │   ├── categories/[slug]/page.js
+│   │   ├── products/[id]/page.js
+│   │   ├── profile/page.js
+│   │   ├── sign-in/page.js
+│   │   ├── sign-up/page.js
+│   │   ├── globals.css
+│   │   ├── layout.js
+│   │   └── page.js
+│   ├── components/
+│   │   ├── auth/
+│   │   ├── category/
+│   │   ├── index/
+│   │   ├── layout/
+│   │   ├── product/
+│   │   ├── product-details/
+│   │   └── user/
+│   ├── lib/
+│   │   ├── auth.js
+│   │   ├── auth-client.js
+│   │   └── utils.js
+│   └──
+├── .env.local
+├── .gitignore
+├── eslint.config.mjs
+├── jsconfig.json
+├── next.config.mjs
+├── package.json
+├── pnpm-lock.yaml
+├── postcss.config.mjs
+└── README.md
 ```
-/products
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 18+ or newer
+- pnpm (recommended; this repo already declares `pnpm@12.9.1`)
+- MongoDB Atlas or a local MongoDB instance
+- Google OAuth client credentials
+- GitHub OAuth app credentials
+
+### Install dependencies
+
+```bash
+pnpm install
 ```
 
-**Filter:**
+### Environment configuration
+
+Create a `.env.local` file in the project root and add the following values:
+
+```bash
+BETTER_AUTH_SECRET=your-secret-key
+BETTER_AUTH_PUBLIC_URL=http://localhost:3000
+BETTER_AUTH_LOCAL_URL=http://localhost:3000
+
+MONGODB_URL=mongodb+srv://<username>:<password>@<cluster-url>/<database>?retryWrites=true&w=majority
+
+BETTER_AUTH_GOOGLE_CLIENT_ID=your-google-client-id
+BETTER_AUTH_GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+BETTER_AUTH_GITHUB_CLIENT_ID=your-github-client-id
+BETTER_AUTH_GITHUB_CLIENT_SECRET=your-github-client-secret
 ```
-/products?category=chal
-```    
-**Single Product:**
-```
-/products/1
-```
 
-**Categories:**
-```
-/categories
-```    
+### Run locally
 
-**Single Category:**
-```
-/categories/chal
+```bash
+pnpm dev
 ```
 
----
+Then open:
 
-## 🐣 Basic Requirements (Must Do for Everyone)
-- Your app must work on all screen sizes — mobile, tablet, and desktop
-- Make at least 8 Git commits with clear, meaningful messages
-- Your app must run without any errors after deployment
-- Add a nice README.md file with your project name, description, technologies used, and features(minimum 5)
+```bash
+http://localhost:3000
+```
 
----
+## Available scripts
 
-# 🔧 Main Requirements — 50 Marks
+```bash
+pnpm dev     # start the app in development mode
+pnpm build   # create a production build
+pnpm start   # run the production server
+pnpm lint    # run ESLint checks
+```
 
+## How the app works
 
-### 1. 🔝 Navbar
+### Marketplace data
 
-- Design the Navbar exactly like the Figma.
-- Put your logo on the left side: `🛒 বাজার দর` + Bangla date underneath.
-- Put your navigation links in a second row / middle — category links.
-- The active category link should look different (highlighted).
-- **Right-side auth buttons**: `সাইন ইন` + `সাইন আপ`. When logged in, show profile / sign-out instead.
-- **Price ticker (marquee) below navbar**: infinite scrolling strip showing `emoji + name + দাম টাকা/একক + ▲/▼ %` 
+The app fetches product and category information from the Programming Hero Bazaar API, then renders the data in a marketplace-style interface.
 
----
+### Authentication
 
-### 2. 🅱️ Hero / Banner
+The project uses Better Auth with MongoDB adapters to power:
 
-- Eyebrow / small text
-- Main heading
-- Subtitle
-- A primary **CTA button**
-  - It scrolls the user down to the `#সব-পণ্য` section on the same page (an anchor link, not a route change).
-- A **banner/hero image** on the right side..
+- Email/password sign-up and sign-in
+- Social sign-in via Google and GitHub
+- Session handling and user profile access
 
+### Product experience
 
----
+Users can:
 
-### 3. ⚖️ The Product Sections (Home Page)
+- View market prices from the homepage
+- Open category pages for specific product groups
+- Compare price changes and unit rates
+- Navigate to product detail pages for deeper market breakdowns
 
-- **Section A — “আজ দাম বেড়েছে ▲”**: Top 6 risers. 
-- **Section B — “আজ দাম কমেছে ▼”**: Top 6 fallers. 
-- **Section C — “সব পণ্য” with subtitle** .
-- Display all products from JSON data as cards in a **responsive grid** (3-4 cols on large screens, collapses on mobile). Must be responsive.
-- Each card must show:
-  - 📷 Emoji / illustration (e.g. `🍚 🫘 🫙 🥔 🧅 🌶️ 🐟 🍗 🥚 🫚 🧄`)
-  - 📛 Product name (e.g. “স্বর্ণমাছি চাল”, “মিনিকেট চাল”, “ইলিশ মাছ”, “পেঁয়াজ”)
-  - 🖇️ Unit line (e.g. `প্রতি কেজি`, `প্রতি লিটার`, `প্রতি ডজন`, `প্রতি পিস`)
-  - 🔴 Price row: label `আজকের দাম` + value (e.g. `১৪৮ টাকা`, `১,৮৫০ টাকা` — Bengali digits) + change badge `▲ ২.১% / ▼ ২.৯% / —০.০%` (green up, red down, gray flat)
-- 🧭 Clicking a card navigates the user to that product’s **Detail Page**.
+## Product positioning
 
----
+This app is best described as a Bangla consumer market intelligence dashboard for everyday price tracking. It is designed for shoppers who want fast access to current price trends without browsing multiple sources or markets.
 
-### 4. Product Details Page — Layout (`/product/[slug]`)
+## Roadmap ideas
 
-**Protected route — requires login.**
+- Add search and filter by product name
+- Add favorites or saved products
+- Add dashboard analytics for price changes over time
+- Add admin-managed product data source configuration
+- Add dark mode and enhanced mobile UX
+- Integrate more local market sources and historical pricing data
 
-**Top — Summary:**
-- Emoji + Title
-- Subtitle/description (market summary line)
-- Category tags (e.g. `সবজি`, `চাল`)
-- Unit (`প্রতি কেজি / লিটার / ডজন / পিস`)
+## Notes
 
+- The project is mobile-friendly and designed for a simple shopping/market-price experience.
+- Some sections and product data are data-driven from external APIs, so network connectivity and API availability affect the content shown.
+- For production deployment, secure environment variables and OAuth credentials using a managed secret system.
 
-**Price - Summary** 
-- Minimum Price
-- Maximum Price 
-- Average Price 
+## License
 
+This project is currently unlicensed unless otherwise specified by the repository owner.
 
-**বাজারভিত্তিক আজকের দাম** 
-- Show all the data like figma based on different Bazar. You can do this section Design like figma or as you want. 
+## Contributing
 
+Contributions are welcome. If you want to improve the product experience, UI, auth flow, or data handling:
 
-### 5. Category Page
-- Title + icon 
-- **Sort control**: `সাজান: ডিফল্ট | দাম: কম থেকে বেশি | দাম: বেশি থেকে কম` (see C1).
-- **Loading state**: show skeleton / “Loading…” while fetching before the list renders.
-- **Product cards list**: same card design as Home (thumbnail emoji, title e.g. “আলু”, “পেঁয়াজ”, “ঢেঁড়স”, unit e.g. “প্রতি কেজি”, price + change badge).
-- **Empty state** (when category has no items / invalid slug): 404-style message + CTA button **“হোম পেজে ফিরে যান”** (links back to `/`).
-
-
-### 6. Authentication (`/signin`, `/signup`)
-
-- **Sign In**: User Login: The user will  show  a Login page with a form , so that the user can Log in this application. 
-    - Show a Title for Login.  & Form with following fields ( Email , Password , Login button ) 
-    - If the user Login successfully then navigate him to his Home page. If not, show him an error with toast / error message anywhere in the form.
-
-    - There will be some other options like:
-        - Show the user a Link for Register  so that he can go to the register page. 
-        - Show users a Social Login Button ( Google/GitHub/any other social login ) . on Clicking it user authenticate with Google Navigate him to  his Home page.
-- **Sign Up**: User Registration: Create a register page with a form , so that the user can register himself in this application. 
-    - Show a Title for registration and a Form with following fields( Name , Email, Password & Register Button ) 
-    - If the user Register successfully then navigate him to his login page.
-    - If not, show him an error with toast / error message anywhere in the form.
-
-
-    - There will be some other options like 
-        - Show the user a Link for Login so that he can go to the Login page. 
-        - Show users a Social Login Button ( Google/GitHub/any other social login ) . on Clicking it user authenticate with Google Navigate the user to the Home page.
-
-- Use **BetterAuth** (email/password + Google + GitHub), toast on success/error, skeleton loaders.
-- Show relevant **toast notification** on login / signup / logout / validation error.
--  💡Don’t implement email verification or forget password method as it will inconvenience the examiner. If you want, you can add these after receiving the assignment result.
-
---- 
-
-### 7. Footer
-- Match the Figma.
-- **Left**: `বাজার দর — প্রয়োজনীয় পণ্যের দাম এক নজরে।`
-- **Right**: *“সকল দাম সম্ভাব্য; বাজার অবস্থার ওপর নির্ভর করে পরিবর্তিত হয়।”*
-
-### 8. Responsive Design
-- The entire website must work correctly on mobile, tablet, and desktop screen sizes (grid collapses correctly, navbar + ticker stays usable, hero stacks, `btn-sm sm:btn-md`, `max-w-6xl` container, etc.).
-
----
-
-#	Requirement
-- Add a 404 Page for any unknown/invalid route (e.g. `/category/invalid`, `/product/unknown` → friendly  404 + “হোম পেজে ফিরে যান”)
-- Show a loading animation ( `skeleton`) while the product data is being fetched on the Home / Category page
-- Show a relevant toast notification for auth + protected-route redirects (use `react-hot-toast` / `data-rht-toaster`).
-- Make sure reloading any page after deployment does not cause an error (dynamic `[slug]` routes must work on Vercel — no hard 404 on refresh)
-
----
-
-# Challenge Requirements — 10 Marks
-
-### C1. - **Sort dropdown**:
-“সাজান” → options `ডিফল্ট`, `দাম: কম থেকে বেশি`, `দাম: বেশি থেকে কম` (default `ডিফল্ট`, with chevron icon). Must handle Bengali numerals correctly (sort by numeric value, not string).
-
-### C2. GitHub README
-- Add a well-designed `README.md` that includes:
-  - Project name (বাজার দর / BazarDor)
-  - Short description
-  - Technologies used
-  - 5 key features of the project
-
-### C3. - Update Information Feature
-- In My Profile route there will be an update button. On clicking it,  Take user to another route 
-- Show user a form with an input field (  Name ), An Update Information button.
-
-Follow this documentation: https://better-auth.com/docs/concepts/users-accounts#update-user 
-
-
----
-
-### 🛠️ Technologies to Use
-Technology	Purpose
-- Next.js ->	Build the UI
-- App router(Next.js) +	Handle page navigation
-- Tailwind CSS + Any component library	Styling and responsiveness(DaisyUI, Hero UI)
-- TypeScript / JavaScript
-- BetterAuth
-
-### 🚀 Deployment
-Deploy your project on Vercel, Netlify, Cloudflare Pages, or anywhere else before submitting.
-
-## 📬 Submission
-Fill in both links before submitting:
-
-- Live Link:
-- GitHub Repository Link:
-
-
-### Notes : You can use Bengali or English language for core website information or any kind of text.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Open a pull request with a clear summary
