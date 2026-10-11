@@ -21,12 +21,12 @@ export default function RootLayout({ children }) {
       data-theme="light"
       className={`${notoSerifBengali.className} h-full antialiased`}
     >
-      <body className="">
+      <body>
         <Header />
-        <Categories></Categories>
-        <MarqueeProducts></MarqueeProducts>
+        <Categories />
+        <MarqueeProducts />
         <main>{children}</main>
-        <Footer></Footer>
+        <Footer />
       </body>
     </html>
   );
