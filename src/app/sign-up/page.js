@@ -14,7 +14,6 @@ const SignUpPage = () => {
     const formData = new FormData(e.target);
     const user = Object.fromEntries(formData.entries());
 
-    console.log(user);
     if (user?.password !== user.confirmPassword) {
       toast.error("Password and confirm password should be mathced.");
       return;

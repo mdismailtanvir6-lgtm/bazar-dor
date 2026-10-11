@@ -1,46 +1,71 @@
 "use client";
 
-import { useSession } from "@/lib/auth-client";
-import Image from "next/image";
+import { signOut, useSession } from "@/lib/auth-client";
 import Link from "next/link";
 import React, { useState } from "react";
 import UpdateUser from "./UpdateUser";
+import { redirect } from "next/navigation";
+import { LogOutIcon } from "lucide-react";
 
 const UserProfile = () => {
   const { data: session } = useSession();
   const user = session?.user;
 
-  //   ===== use state for update user ======
+  // ===== use state for update user ======
   const [showUpdate, setShowUpdate] = useState(false);
 
-  return (
-    <section className="my-10 relative">
-      <div>
-        <h1 className="text-center text-md font-semibold py-5">প্রোফাইল</h1>
+  const handleSignOut = async () => {
+    await signOut();
+    redirect("/");
+  };
 
-        <div className="flex flex-col items-center gap-2">
-          <Link href={"/profile"}>
-            <div className="avatar">
-              <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
+  return (
+    <section className="my-10 max-w-4xl mx-auto px-4 relative">
+      <div>
+        {/* Header Section */}
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-gray-800">আমার প্রোফাইল</h1>
+          <p className="text-sm text-gray-500 mt-1">
+            আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন
+          </p>
+        </div>
+
+        {/* Profile Card */}
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            {/* Avatar */}
+            <Link href={"/profile"}>
+              <div className="w-16 h-16 rounded-2xl overflow-hidden relative border border-gray-100 shadow-inner">
                 <img
-                  width={40}
-                  height={40}
-                  //   alt="User Avatar"
-                  alt={user?.name}
-                  src={user?.image}
+                  fill
+                  alt={user?.name || "User Avatar"}
+                  src={
+                    user?.image ||
+                    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100"
+                  }
+                  className="object-cover w-full h-full"
                 />
               </div>
+            </Link>
+
+            {/* Name and Email */}
+            <div>
+              <h2 className="text-lg font-bold text-gray-900">
+                {user?.name || "Rezwan Ahmed"}
+              </h2>
+              <p className="text-sm text-gray-500">
+                {user?.email || "rezwanahmed@gmail.com"}
+              </p>
             </div>
-          </Link>
+          </div>
 
-          <h2>{user?.name}</h2>
-          <h2>{user?.email}</h2>
-
+          {/* Sign Out Button */}
           <button
-            onClick={() => setShowUpdate(!showUpdate)}
-            className="btn btn-md bg-[#9F0712] text-white my-5"
+            onClick={handleSignOut}
+            className="flex items-center gap-2 border border-[#9F0712] text-[#9F0712] hover:bg-[#9F0712] hover:text-white transition-colors px-4 py-2 rounded-lg text-sm font-medium"
           >
-            আপডেট করুন
+            <LogOutIcon />
+            সাইন আউট
           </button>
         </div>
       </div>
