@@ -24,8 +24,8 @@ export default function RootLayout({ children }) {
     >
       <body>
         <Header />
-        {/* <Categories />
-        <MarqueeProducts /> */}
+        <Categories />
+        <MarqueeProducts />
         <main>{children}</main>
         <Toaster />
         <Footer />

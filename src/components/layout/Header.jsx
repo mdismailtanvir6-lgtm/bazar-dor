@@ -12,7 +12,6 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const user = session?.user;
-  console.log(user);
 
   const handleSignOut = async () => {
     await signOut();
