@@ -17,7 +17,7 @@ const MarqueeProducts = async () => {
   const showabledProducts = [...products].slice(0,8);
 
   return (
-    <div className="sticky top-0 z-50 mt-5 flex overflow-hidden border-y border-gray-200 bg-white py-2 shadow-sm">
+    <div className="flex  border-y border-gray-200 bg-white py-2 shadow-sm">
       {/* Marquee */}
       <div className="min-w-0 flex-1">
         <Marquee speed={60} pauseOnHover>

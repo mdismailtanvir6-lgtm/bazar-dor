@@ -23,9 +23,12 @@ export default function RootLayout({ children }) {
       className={`${notoSerifBengali.className} h-full antialiased`}
     >
       <body>
-        <Header />
-        <Categories />
-        <MarqueeProducts />
+        <div className="sticky top-0 z-50 ">
+          <Header />
+          <MarqueeProducts />
+          <Categories />
+        </div>
+
         <main>{children}</main>
         <Toaster />
         <Footer />
