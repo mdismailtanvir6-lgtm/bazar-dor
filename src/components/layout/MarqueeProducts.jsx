@@ -12,15 +12,16 @@ const MarqueeProducts = async () => {
     return null;
   }
 
-  const products = await res.json();
-  console.log(products);
+    const products = await res.json();
+
+  const showabledProducts = [...products].slice(0,8);
 
   return (
     <div className="sticky top-0 z-50 mt-5 flex overflow-hidden border-y border-gray-200 bg-white py-2 shadow-sm">
       {/* Marquee */}
       <div className="min-w-0 flex-1">
         <Marquee speed={60} pauseOnHover>
-          {products?.map((item) => {
+          {showabledProducts?.map((item) => {
             const price = item.today || 0;
             // Format unit if needed (e.g. "kg" to "টাকা/কেজি" or keep custom)
             const unitText = item.unit === "kg" ? "টাকা/কেজি" : item.unit;

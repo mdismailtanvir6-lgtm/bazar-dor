@@ -9,6 +9,8 @@ export default async function AllProducts() {
 
   const products = await res.json();
 
+  const showabledProducts = [...products].slice(0,8);
+
   return (
     <section
       id="all-products"
@@ -28,7 +30,7 @@ export default async function AllProducts() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {products?.map((product) => (
+        {showabledProducts?.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
