@@ -10,15 +10,15 @@ export default function Home() {
       <Banner />
 
       {/* ===== increase product price section ==== */}
-      <Suspense fallback={"Products are coming..."}>
+      {/* <Suspense fallback={"Products are coming..."}>
         <IncreaseProductPrice />
         <DecreaseProductPrice />
-      </Suspense>
+      </Suspense> */}
 
       {/* ===== all-products section ==== */}
-      <Suspense fallback={"Products are coming..."}>
+      {/* <Suspense fallback={"Products are coming..."}>
         <AllProducts />
-      </Suspense>
+      </Suspense> */}
     </div>
   );
 }
