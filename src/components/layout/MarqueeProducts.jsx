@@ -14,7 +14,7 @@ const MarqueeProducts = async () => {
 
     const products = await res.json();
 
-  const showabledProducts = [...products].slice(0,8);
+  const showabledProducts = [...products].slice(0,15);
 
   return (
     <div className="flex  border-y border-gray-200 bg-white py-2 shadow-sm">
@@ -32,7 +32,7 @@ const MarqueeProducts = async () => {
             return (
               <div key={item.id} className="flex items-center">
                 <Link
-                  href={`/products/${item.slug || item.id}`}
+                  href={`/products/${item.id || item.slug}`}
                   className="mx-4 flex items-center gap-2 whitespace-nowrap rounded-md px-3 py-1.5 transition-colors hover:bg-gray-50"
                 >
                   {/* Product Icon / Image / Emoji */}
