@@ -15,7 +15,7 @@ const CategoryLinks = ({ categories }) => {
           <Link
             key={item.id}
             href={`/categories/${item.slug}`}
-            className={`my-4 flex items-center gap-2  transition-colors ${
+            className={`my-2 md:my-4 flex items-center gap-2 md:gap-4  transition-colors ${
               isActive
                 ? "font-bold text-[#05893E] border-b border-[#05893E]"
                 : "border-transparent text-gray-700 hover:text-red-600 font-semibold"

@@ -7,23 +7,43 @@ import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 
 const SignInPage = () => {
+  // ==== handle submit =====
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const user = Object.fromEntries(formData.entries());
 
-    const { data, error } = await signIn.email({
-      ...user,
-    });
+    // ====  better auth sign-in function =====
+    const { data } = await signIn.email(
+      {
+        ...user,
+      },
+      {
+        onRequest: () => {
+          toast.loading("Signing your account...", {
+            id: "signin",
+          });
+        },
 
+        onSuccess: () => {
+          toast.success("Sign-in successful!", {
+            id: "signin",
+          });
+          redirect("/");
+        },
+
+        onError: (ctx) => {
+          toast.error(ctx.error.message || "Signup failed!", {
+            id: "signin",
+          });
+        },
+      },
+    );
+
+    // ===== redirect to home page =====
     if (data) {
-      toast.success("Sign In successfull!");
       redirect("/");
-    }
-
-    if (error) {
-      toast.error("Sign in failed! Something went wrong!");
     }
   };
 
