@@ -13,9 +13,30 @@ const Header = () => {
 
   const user = session?.user;
 
+  // ===== handle sign out function =====
   const handleSignOut = async () => {
-    await signOut();
-    setIsOpen(false);
+    // ====  better auth sign-out function =====
+    await signOut({
+      onRequest: () => {
+        toast.loading("Signing out from your account...", {
+          id: "signout",
+        });
+      },
+
+      onSuccess: () => {
+        toast.success("Sign-out successful!", {
+          id: "signout",
+        });
+      },
+
+      onError: (ctx) => {
+        toast.error(ctx.error.message || "Sign-out failed!", {
+          id: "signout",
+        });
+      },
+    });
+
+    redirect("/");
   };
 
   return (
