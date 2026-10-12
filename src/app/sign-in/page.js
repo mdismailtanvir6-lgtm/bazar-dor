@@ -30,7 +30,6 @@ const SignInPage = () => {
           toast.success("Sign-in successful!", {
             id: "signin",
           });
-          redirect("/");
         },
 
         onError: (ctx) => {

@@ -14,17 +14,30 @@ const UpdateUser = () => {
     const formData = new FormData(e.target);
     const updatedData = Object.fromEntries(formData.entries());
 
-    const { data, error } = await updateUser({
-      ...updatedData,
-    });
+    await updateUser(
+      {
+        ...updatedData,
+      },
+      {
+        onRequest: () => {
+          toast.loading("Updating your account...", {
+            id: "updateUser",
+          });
+        },
 
-    if (data) {
-      toast.success("Update your profile successful!");
-    }
+        onSuccess: () => {
+          toast.success("Update successful!", {
+            id: "updateUser",
+          });
+        },
 
-    if (error) {
-      toast.error("Update profile failed! Something went wrong!");
-    }
+        onError: (ctx) => {
+          toast.error(ctx.error.message || "Update failed!", {
+            id: "updateUser",
+          });
+        },
+      },
+    );
   };
 
   return (
