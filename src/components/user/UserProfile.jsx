@@ -52,7 +52,7 @@ const UserProfile = () => {
         </div>
 
         {/* Profile Card */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex items-center justify-between">
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             {/* Avatar */}
             <Link href={"/profile"}>
@@ -86,7 +86,7 @@ const UserProfile = () => {
             className="flex items-center gap-2 border border-[#9F0712] text-[#9F0712] hover:bg-[#9F0712] hover:text-white transition-colors px-4 py-2 rounded-lg text-sm font-medium"
           >
             <LogOutIcon />
-            সাইন আউট
+            <span>সাইন আউট</span>
           </button>
         </div>
       </div>

@@ -98,10 +98,10 @@ const Header = () => {
             <div className="flex items-center gap-3">
               <Link
                 href="/sign-in"
-                className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 transition"
+                className="flex items-center gap-1.5 px-4 py-2 border sm:border-none border-gray-700 rounded-lg text-sm font-medium text-gray-700 hover:text-emerald-600 transition"
               >
                 <LogIn className="w-4 h-4" />
-                <span>সাইন ইন</span>
+                <span className="hidden sm:block">সাইন ইন</span>
               </Link>
 
               <Link
@@ -109,7 +109,7 @@ const Header = () => {
                 className="flex items-center gap-1.5 rounded-lg bg-[#05893e] px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 transition"
               >
                 <UserPlus className="w-4 h-4" />
-                <span>সাইন আপ</span>
+                <span className="hidden sm:block">সাইন আপ</span>
               </Link>
             </div>
           )}
