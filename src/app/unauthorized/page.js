@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { ShieldAlert, Home, } from "lucide-react";
+import { ShieldAlert, Home } from "lucide-react";
 import { LogIn } from "lucide-react";
 
 export default function UnauthorizedPage() {
@@ -34,7 +34,7 @@ export default function UnauthorizedPage() {
           <div className="mt-10 max-w-2xl mx-auto bg-danger flex flex-col items-center justify-center gap-5 sm:flex-row">
             <Link
               href="/"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#007339] px-6 py-3.5 font-semibold text-[#007339] shadow-sm transition hover:bg-[#005c2e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007339] sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#007339]/20 bg-white px-6 py-3.5 font-semibold text-[#007339] transition hover:bg-[#007339]/5 sm:w-auto"
             >
               <Home size={19} />
               হোম পেজে ফিরে যান
@@ -44,7 +44,7 @@ export default function UnauthorizedPage() {
               href={"/sign-in"}
               className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#007339]/20 bg-white px-6 py-3.5 font-semibold text-[#007339] transition hover:bg-[#007339]/5 sm:w-auto"
             >
-                <LogIn className="w-4 h-4" />
+              <LogIn className="w-4 h-4" />
               সাইন ইন করুন
             </Link>
           </div>
